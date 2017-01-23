@@ -5,14 +5,10 @@ import com.pa.pricescore.simple.entity.Purchase;
 import com.pa.pricescore.simple.impl.IDGen;
 import com.pa.pricescore.simple.repository.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Date;
-import java.math.BigDecimal;
-import java.util.UUID;
 
 /**
  * Created by Jek on 24.06.16.

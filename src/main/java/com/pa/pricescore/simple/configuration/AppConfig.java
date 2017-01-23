@@ -5,18 +5,23 @@ import org.apache.catalina.filters.CorsFilter;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 
 import static org.apache.catalina.filters.CorsFilter.PARAM_CORS_ALLOWED_HEADERS;
 import static org.apache.catalina.filters.CorsFilter.PARAM_CORS_ALLOWED_METHODS;
+import static org.elasticsearch.node.NodeBuilder.nodeBuilder;
 
 
 /**
  * Created by Jek on 03.07.16.
  */
 @Configuration
+@EnableElasticsearchRepositories(basePackages = "org/springframework/data/elasticsearch/repositories")
 public class AppConfig
 {
     @Bean
@@ -39,5 +44,11 @@ public class AppConfig
 
         return frb;
     }
+
+    @Bean
+    public ElasticsearchOperations elasticsearchTemplate() {
+        return new ElasticsearchTemplate(nodeBuilder().local(true).node().client());
+    }
+
 
 }

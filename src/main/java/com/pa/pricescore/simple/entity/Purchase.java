@@ -9,6 +9,7 @@ import java.util.UUID;
 /**
  * Created by Jek on 03.07.16.
  */
+
 @Document(collection = "purchase")
 public class Purchase
 {
