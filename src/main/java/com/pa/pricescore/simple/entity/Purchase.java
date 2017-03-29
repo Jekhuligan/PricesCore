@@ -1,6 +1,7 @@
 package com.pa.pricescore.simple.entity;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -10,17 +11,31 @@ import java.util.UUID;
  * Created by Jek on 03.07.16.
  */
 
-@Document(collection = "purchase")
+@Document(indexName = "purchase", type = "purchase", shards = 1, replicas = 0, refreshInterval = "-1")
 public class Purchase
 {
-    private UUID id;
+    private String id;
     private Integer userId;
     private String shop;
     private String item;
     private BigDecimal price;
     private Date date;
 
-    public void setId(UUID id) {
+    public Purchase() {
+    }
+
+    public Purchase(Integer userId, String shop, String item, BigDecimal price, Date date)
+    {
+        this.userId = userId;
+        this.shop = shop;
+        this.item = item;
+        this.price = price;
+        this.date = date;
+    }
+
+
+
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -44,7 +59,7 @@ public class Purchase
         this.date = date;
     }
 
-    public UUID getId() {
+    public String getId() {
 
         return id;
     }

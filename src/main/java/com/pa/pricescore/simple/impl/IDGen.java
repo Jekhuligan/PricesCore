@@ -14,5 +14,9 @@ public class IDGen
     {
         return UUID.randomUUID();
     }
+    public String getIdString()
+    {
+        return UUID.randomUUID().toString();
+    }
 
 }
